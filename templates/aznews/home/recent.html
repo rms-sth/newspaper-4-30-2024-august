@@ -23,7 +23,7 @@
                 <div class="what-cap">
                   <span class="color1">{{ recent_post.category.name }}</span>
                   <h4>
-                    <a href="#">{{ recent_post.title }}</a>
+                    <a href="{% url 'post-detail' recent_post.pk %}">{{ recent_post.title }}</a>
                   </h4>
                 </div>
               </div>

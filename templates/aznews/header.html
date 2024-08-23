@@ -1,3 +1,5 @@
+{% load static %}
+
 <header>
   <!-- Header Start -->
   <div class="header-area">
@@ -9,12 +11,12 @@
               <div class="header-info-left">
                 <ul>
                   <li>
-                    <img src="assets/img/icon/header_icon1.png" alt="" />
+                    <img src="{% static 'aznews/img/icon/header_icon1.png' %}" alt="" />
                     34ºc, Sunny
                   </li>
                   <li>
-                    <img src="assets/img/icon/header_icon1.png" alt="" />
-                    Tuesday, 18th June, 2019
+                    <img src="{% static 'aznews/img/icon/header_icon1.png' %}" alt="" />
+                    {% now "l, jS F, Y" %}
                   </li>
                 </ul>
               </div>
@@ -41,14 +43,14 @@
             <!-- Logo -->
             <div class="col-xl-3 col-lg-3 col-md-3">
               <div class="logo">
-                <a href="index.html">
-                  <img src="assets/img/logo/logo.png" alt="" />
+                <a href="/">
+                  <img src="{% static 'aznews/img/logo/logo.png' %}" alt="" />
                 </a>
               </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9">
               <div class="header-banner f-right ">
-                <img src="assets/img/hero/header_card.jpg" alt="" />
+                <img src="{% static 'aznews/img/hero/header_card.jpg' %}" alt="" />
               </div>
             </div>
           </div>
@@ -60,8 +62,8 @@
             <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
               <!-- sticky -->
               <div class="sticky-logo">
-                <a href="index.html">
-                  <img src="assets/img/logo/logo.png" alt="" />
+                <a href="/">
+                  <img src="{% static 'aznews/img/logo/logo.png' %}" alt="" />
                 </a>
               </div>
               <!-- Main-menu -->
@@ -69,7 +71,7 @@
                 <nav>
                   <ul id="navigation">
                     <li>
-                      <a href="index.html">Home</a>
+                      <a href="/">Home</a>
                     </li>
 
                     {% for category in categories %}

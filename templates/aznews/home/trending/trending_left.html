@@ -7,7 +7,7 @@
       <div class="trend-top-cap">
         <span>{{ featured_post.category.name }}</span>
         <h2>
-          <a href="details.html">{{ featured_post.title }}</a>
+          <a href="{% url 'post-detail' featured_post.pk %}">{{ featured_post.title }}</a>
         </h2>
       </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="trend-bottom-cap">
               <span class="color1">{{ featured_post.category.name }}</span>
               <h4>
-                <a href="details.html">{{ featured_post.title }}</a>
+                <a href="{% url 'post-detail' featured_post.pk %}">{{ featured_post.title }}</a>
               </h4>
             </div>
           </div>

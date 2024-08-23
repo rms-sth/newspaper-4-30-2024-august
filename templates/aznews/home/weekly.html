@@ -24,7 +24,7 @@
                 <div class="weekly-caption">
                   <span class="color1">{{ weekly_post.category.name }}</span>
                   <h4>
-                    <a href="#">{{ weekly_post.title }}</a>
+                    <a href="{% url 'post-detail' weekly_post.pk %}">{{ weekly_post.title }}</a>
                   </h4>
                 </div>
               </div>

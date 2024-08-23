@@ -12,7 +12,7 @@
       <div class="trand-right-cap">
         <span class="color1">{{ post.category.name }}</span>
         <h4>
-          <a href="details.html">{{ post.title|truncatechars:40 }}</a>
+          <a href="{% url 'post-detail' post.pk %}">{{ post.title|truncatechars:40 }}</a>
         </h4>
       </div>
     </div>
