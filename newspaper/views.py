@@ -1,3 +1,6 @@
+from django.shortcuts import redirect, render
+from django.views import View
+from newspaper.forms import CommentForm
 from newspaper.models import Category, Post, Tag
 
 from django.views.generic import ListView, DetailView
@@ -33,7 +36,6 @@ class HomeView(ListView):
             published_at__isnull=False, status="active"
         ).order_by("-published_at")[:7]
 
-    
         return context
 
 
@@ -72,3 +74,19 @@ class PostDetailView(DetailView):
         )
 
         return context
+
+
+class CommentView(View):
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        post_id = request.POST["post"]
+        if form.is_valid():
+            form.save()
+            return redirect("post-detail", post_id)
+
+        post = Post.objects.get(pk=post_id)
+        return render(
+            request,
+            "aznews/detail/detail.html",
+            {"post": post, "form": form},
+        )
