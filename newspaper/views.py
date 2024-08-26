@@ -3,7 +3,7 @@ from django.views import View
 from newspaper.forms import CommentForm
 from newspaper.models import Category, Post, Tag
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from datetime import timedelta
 
 from django.utils import timezone
@@ -90,3 +90,19 @@ class CommentView(View):
             "aznews/detail/detail.html",
             {"post": post, "form": form},
         )
+
+
+class AboutView(TemplateView):
+    template_name = "aznews/about.html"
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = "aznews/list/list.html"
+    context_object_name = "posts"
+    paginate_by = 1
+
+    def get_queryset(self):
+        return Post.objects.filter(
+            published_at__isnull=False, status="active"
+        ).order_by("-published_at")
