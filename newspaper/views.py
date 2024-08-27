@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from newspaper.forms import CommentForm
+from newspaper.forms import CommentForm, ContactForm
 from newspaper.models import Category, Post, Tag
+from django.contrib import messages
 
 from django.views.generic import ListView, DetailView, TemplateView
 from datetime import timedelta
@@ -106,3 +107,29 @@ class PostListView(ListView):
         return Post.objects.filter(
             published_at__isnull=False, status="active"
         ).order_by("-published_at")
+
+
+class ContactView(View):
+    template_name = "aznews/contact.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Successfully submitted your query. We will contact you soon."
+            )
+            return redirect("contact")
+        else:
+            messages.error(
+                request,
+                "Cannot submit your query. Please make sure all fields are valid.",
+            )
+            return render(
+                request,
+                self.template_name,
+                {"form": form},
+            )
