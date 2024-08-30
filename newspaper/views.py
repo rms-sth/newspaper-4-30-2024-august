@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from newspaper.forms import CommentForm, ContactForm
+from newspaper.forms import CommentForm, ContactForm, NewsletterForm
 from newspaper.models import Category, Post, Tag
 from django.contrib import messages
 
@@ -132,4 +132,71 @@ class ContactView(View):
                 request,
                 self.template_name,
                 {"form": form},
+            )
+
+
+class PostByCategoryView(ListView):
+    model = Post
+    template_name = "aznews/list/list.html"
+    context_object_name = "posts"
+    paginate_by = 1
+
+    def get_queryset(self):
+        query = super().get_queryset()
+        query = query.filter(
+            published_at__isnull=False,
+            status="active",
+            category__id=self.kwargs["category_id"],
+        ).order_by("-published_at")
+        return query
+
+
+class PostByTagView(ListView):
+    model = Post
+    template_name = "aznews/list/list.html"
+    context_object_name = "posts"
+    paginate_by = 1
+
+    def get_queryset(self):
+        query = super().get_queryset()
+        query = query.filter(
+            published_at__isnull=False,
+            status="active",
+            tag__id=self.kwargs["tag_id"],
+        ).order_by("-published_at")
+        return query
+
+
+from django.http import JsonResponse
+
+
+class NewsletterView(View):
+    def post(self, request):
+        is_ajax = request.headers.get("x-requested-with")
+        if is_ajax == "XMLHttpRequest":
+            form = NewsletterForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return JsonResponse(
+                    {
+                        "success": True,
+                        "message": "Successfully subscribed to the newsletter.",
+                    },
+                    status=201,
+                )
+            else:
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "message": "Cannot subscribe to the newsletter.",
+                    },
+                    status=400,
+                )
+        else:
+            return JsonResponse(
+                {
+                    "success": False,
+                    "message": "Cannot process. Must be an AJAX XMLHttpRequest",
+                },
+                status=400,
             )

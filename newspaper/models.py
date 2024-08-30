@@ -72,6 +72,13 @@ class Contact(TimeStampModel):
         return self.name
 
 
+class Newsletter(TimeStampModel):
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.email
+
+
 ## 1 - 1 Relationship
 # 1 user can have 1 profile => 1
 # 1 profile is associated to 1 user  => 1

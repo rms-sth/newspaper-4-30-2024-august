@@ -76,7 +76,7 @@
 
                     {% for category in categories %}
                       <li>
-                        <a href="#">{{ category.name }}</a>
+                        <a href="{% url 'post-by-category' category.id %}">{{ category.name }}</a>
                       </li>
                     {% endfor %}
 
@@ -94,7 +94,7 @@
                       <ul class="submenu">
                         {% for tag in tags %}
                           <li>
-                            <a href="#">{{ tag.name }}</a>
+                            <a href="{% url 'post-by-tag' tag.id %}">{{ tag.name }}</a>
                           </li>
                         {% endfor %}
                       </ul>

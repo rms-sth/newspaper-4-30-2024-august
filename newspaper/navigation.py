@@ -2,7 +2,7 @@ from newspaper.models import Category, Post, Tag
 
 
 def navigation(request):
-    categories = Category.objects.all()[:4]
+    categories = Category.objects.all().order_by('name')[:4]
     tags = Tag.objects.all()[:10]
     trending_posts = Post.objects.filter(
         published_at__isnull=False, status="active"
