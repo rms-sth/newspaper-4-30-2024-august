@@ -2,6 +2,7 @@
   <h4 class="widget_title">Newsletter</h4>
   <div id="newsletter_side_message"></div>
   <form action="" method="post" id="newsletter_side_form">
+    {% csrf_token %}
     <div class="form-group">
       <input type="email"
              class="form-control"

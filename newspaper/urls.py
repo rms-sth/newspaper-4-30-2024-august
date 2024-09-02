@@ -19,4 +19,5 @@ urlpatterns = [
         name="post-by-tag",
     ),
     path("newsletter/", views.NewsletterView.as_view(), name="newsletter"),
+    path("post-search/", views.PostSearchView.as_view(), name="post-search"),
 ]
