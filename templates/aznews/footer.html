@@ -34,14 +34,15 @@
           <div class="single-footer-caption mt-60">
             <div class="footer-tittle">
               <h4>Newsletter</h4>
-              <p>Heaven fruitful doesn't over les idays appear creeping</p>
+              <div id="newsletter_bottom_message"></div>
               <!-- Form -->
               <div class="footer-form">
                 <div id="mc_embed_signup">
-                  <form target="_blank"
-                        action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                        method="get"
+                  <form action=""
+                        method="post"
+                        id="newsletter_bottom_form"
                         class="subscribe_form relative mail_part">
+                    {% csrf_token %}
                     <input type="email"
                            name="email"
                            id="newsletter-form-email"
@@ -119,7 +120,8 @@
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy;<script>
     document.write(new Date().getFullYear());
-</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+</script>
+                All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               </p>
             </div>
