@@ -31,6 +31,11 @@
                   <li>
                     <a href="#"><i class="fab fa-pinterest-p"></i></a>
                   </li>
+                  {% if user.is_authenticated %}
+                    <li>
+                      <a href="{% url 'user-report' %}"><i class="fa fa-download"></i></a>
+                    </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>
